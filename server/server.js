@@ -1,6 +1,7 @@
 const express = require('express');
 const dotenv = require('dotenv');
-const authRoutes = require('./routes/auth'); // Import authentication routes
+const authRoutes = require('./routes/auth');
+const dashboardRoutes = require('./routes/dashboard'); // Import the dashboard route
 
 dotenv.config();
 
@@ -11,6 +12,9 @@ app.use(express.json()); // Middleware to parse JSON bodies
 
 // Use the authentication routes
 app.use('/api/auth', authRoutes);
+
+// Use the dashboard route (protected)
+app.use('/api', dashboardRoutes);
 
 // Test route
 app.get('/', (req, res) => {
